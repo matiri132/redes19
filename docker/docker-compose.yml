@@ -1,0 +1,75 @@
+version: '2.1'
+
+services:
+  r1:
+    build: .
+    volumes:
+      - ./volumes/bgp/r1/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/bgp/r1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/bgp/r1/ospfd.conf:/etc/quagga/bgpd.conf:ro
+      - ./volumes/bgp/r1/bgpd.conf:/etc/quagga/bgpd.conf:ro
+      - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
+    image: bgp:20180508
+    privileged: true
+    ports:
+      #admin
+      - 10101:2601
+      #ospf ipv6
+      - 10103:2606
+      #bgp
+      - 10104:2605
+    networks:
+      bgp:
+        ipv4_address: 70.0.0.2
+      dpto1:
+        ipv4_address: 200.18.13.130
+      dpto2:
+        ipv4_address: 200.18.13.2
+      dpto3: 
+        ipv4_address: 200.18.12.2
+
+      
+  dns-bind:
+    image: resystit/bind9
+    privileged: true
+    command: top
+    networks:
+      dpto2:
+        ipv4_address: 200.18.13.3
+
+networks:
+  
+  bgp:
+    driver: "bridge"
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 70.0.0.0/24
+
+  dpto1:
+    driver: "bridge"
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 200.18.13.128/28
+
+  dpto2:
+    driver: "bridge"
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 200.18.13.0/25
+
+  dpto3:
+    driver: "bridge"
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 200.18.12.0/24
+  
+  
+        

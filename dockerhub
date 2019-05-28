@@ -1,0 +1,13 @@
+-Crear cuenta en dockerhub
+-docker login (y completar)
+-Para subir:
+	-docker container ls (y copiar el id del container que queremos)
+        -docker commit idcontainer nombreimagen
+	-docker tag nombreimagen usuario/nombreimagen:version (docker tag nodejs-webapp 0gis0/nodejs-webapp:v1)
+	-docker push usuario/nombreimagen:version 
+
+Automated build:
+	-Se crea repo en git con codigo fuente
+	-Se linkea la imagen de docker con github y se setea autobuild
+	-Al pushear git se autobuildea la imagen de Docker.
+

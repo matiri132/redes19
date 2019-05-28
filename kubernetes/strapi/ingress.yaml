@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: strapi-ingress
+spec:
+  rules:
+  - host: strapiapp.buffer.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: strapi-svc
+          servicePort: 8080

@@ -1,0 +1,12 @@
+Pasos:
+
+Levantar Docker
+- make routes
+Seleccionar la interfaz bridge de la maquina virtual (microk8s:200.18.12.3) 
+con la interfaz de docker correspondiente a 200.18.12.2.
+Levantar microk8s.
+
+TODO:
+-Configurar DNS
+-Ver conectividad ???
+-Configurar direcciones para BGP (ver resto de los grupos)

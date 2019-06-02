@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   r1:
-    build: .
+    build: ./volumes/bgp/.
     volumes:
       - ./volumes/bgp/r1/zebra.conf:/etc/quagga/zebra.conf:ro
       - ./volumes/bgp/r1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
@@ -30,8 +30,18 @@ services:
 
       
   dns-bind:
-    image: resystit/bind9
+    build: ./volumes/bind9/.
+    volumes:
+      - ./volumes/bind9/dns/named.conf:/etc/bind/named.conf
+#      - ./volumes/bind9/dns/db.200.18.14.rev:/etc/bind/db.200.18.14.rev
+#      - ./volumees/bind9/dns/db.b.efn.unc.edu.ar.net.host:/etc/bind/db.b.efn.unc.edu.ar.net.host
+#      - ./volumes/bind9/dns/named.conf.local:/etc/bind/named.conf.local
+      - ./volumes/bind9/dns/resolv.conf:/etc/resolv.conf
+    image: resystit/bind9 
     privileged: true
+    ports:
+      - 5300:53/udp
+      - 5300:53/tcp
     command: top
     networks:
       dpto2:

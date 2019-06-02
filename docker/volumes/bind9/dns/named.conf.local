@@ -1,0 +1,13 @@
+//zona directa
+zone "b.efn.unc.edu.ar.net"{
+   type master;
+   file "/etc/bind/db.b.efn.unc.edu.ar.net.host"
+   notify yes;
+};
+
+//zona inversa
+zone "6.14.18.200.in-addr.arpa"{
+   type master;
+   file "/etc/bind/db.200.18.14.rev"
+   notify yes;
+};

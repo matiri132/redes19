@@ -38,3 +38,13 @@ microk8s.enable dns dashboard
 sudo ufw allow in on cbr0 && sudo ufw allow out on cbr0
 
 sudo ufw default allow routed
+
+-----------------------------------------------------------------
+
+Con un make en microk8s se levanta el deploymeny service ingres statefulset y servi para mongo.
+
+Se setea /etc/hosts
+
+Se puede ingresar a la app por POSTMAN.
+
+

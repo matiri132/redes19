@@ -5,8 +5,7 @@ services:
     build: ./volumes/bgp/.
     volumes:
       - ./volumes/bgp/r1/zebra.conf:/etc/quagga/zebra.conf:ro
-      - ./volumes/bgp/r1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/bgp/r1/ospfd.conf:/etc/quagga/bgpd.conf:ro
+      - ./volumes/bgp/r1/ospfd.conf:/etc/quagga/ospfd.conf:ro
       - ./volumes/bgp/r1/bgpd.conf:/etc/quagga/bgpd.conf:ro
       - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
     image: bgp:20180508
@@ -33,9 +32,7 @@ services:
     build: ./volumes/bind9/.
     volumes:
       - ./volumes/bind9/dns/named.conf:/etc/bind/named.conf
-#      - ./volumes/bind9/dns/db.200.18.14.rev:/etc/bind/db.200.18.14.rev
-#      - ./volumees/bind9/dns/db.b.efn.unc.edu.ar.net.host:/etc/bind/db.b.efn.unc.edu.ar.net.host
-#      - ./volumes/bind9/dns/named.conf.local:/etc/bind/named.conf.local
+      - ./volumes/bind9/dns/mytld.zone:/etc/bind/mytld.zone
       - ./volumes/bind9/dns/resolv.conf:/etc/resolv.conf
     image: resystit/bind9 
     privileged: true

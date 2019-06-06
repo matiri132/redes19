@@ -8,5 +8,5 @@ $TTL 604800
 ;
 
 @			IN	NS		b.efn.unc.edu.ar.
-@			IN	A		200.18.14.6
-b.efn.unc.edu.ar	IN	A	200.18.14.6
+@			IN	A		200.18.12.3
+b.efn.unc.edu.ar	IN	A	200.18.12.3

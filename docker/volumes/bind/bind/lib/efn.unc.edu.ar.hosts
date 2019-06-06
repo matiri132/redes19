@@ -1,0 +1,8 @@
+$ttl 38400
+efn.unc.edu.ar.	IN	SOA	200.18.12.3. efn.unc.edu.ar. (
+			1559764536
+			10800
+			3600
+			604800
+			38400 )
+efn.unc.edu.ar.	IN	NS	200.18.13.3

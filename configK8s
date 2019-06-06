@@ -47,4 +47,15 @@ Se setea /etc/hosts
 
 Se puede ingresar a la app por POSTMAN.
 
+_----------------------------
+Arreglar:
+systemctl stop snap.microk8s.daemon-kubelet
+sudo iptables --flush
+sudo iptables -tnat --flush
+systemctl start snap.microk8s.daemon-kubelet
+
+-----------------------------------------
+ sudo brctl addif br-04d4e4c53cee enp2s0
+
+
 

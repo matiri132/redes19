@@ -14,7 +14,7 @@ services:
       #admin
       - 10101:2601
       #ospf ipv6
-      - 10103:2606
+      - 10103:2604
       #bgp
       - 10104:2605
     networks:
@@ -27,22 +27,50 @@ services:
       dpto3: 
         ipv4_address: 200.18.12.2
 
-      
-  dns-bind:
-    build: ./volumes/bind9/.
-    volumes:
-      - ./volumes/bind9/dns/named.conf:/etc/bind/named.conf
-      - ./volumes/bind9/dns/mytld.zone:/etc/bind/mytld.zone
-      - ./volumes/bind9/dns/resolv.conf:/etc/resolv.conf
-    image: resystit/bind9 
+  dns-bind9:
+      volumes:
+         - ./volumes/bind:/data
+      image: sameersbn/bind:latest
+      dns: 127.0.0.1
+      privileged: true
+      environment:
+         - ROOT_PASSWORD=SecretPassword
+      #
+      #command: top
+      ports:
+        - 10000:10000
+     #  - 70.0.0.2:53:53/udp
+     #  - 70.0.0.2:53:53/tcp 
+      networks:
+        dpto2:
+          ipv4_address: 200.18.13.3
+    
+    
+
+#  dns-bind:
+#    build: ./volumes/bind9/.
+#    volumes:
+#      - ./volumes/bind9/dns/named.conf:/etc/bind/named.conf
+#      - ./volumes/bind9/dns/mytld.zone:/etc/bind/mytld.zone
+#      - ./volumes/bind9/dns/resolv.conf:/etc/resolv.conf
+#    image: resystit/bind9 
+#    privileged: true
+#    ports:
+#      - 5300:53/udp
+#      - 5300:53/tcp
+#    command: top
+#    networks:
+#      dpto2:
+#        ipv4_address: 200.18.13.3
+
+  host1:
+    image: alpine
     privileged: true
-    ports:
-      - 5300:53/udp
-      - 5300:53/tcp
     command: top
     networks:
-      dpto2:
-        ipv4_address: 200.18.13.3
+      dpto3:
+        ipv4_address: 200.18.12.10
+      
 
 networks:
   
